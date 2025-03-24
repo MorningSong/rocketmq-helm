@@ -4,7 +4,7 @@ nameOverride: rocketmq
 image:
   repository: "apache/rocketmq"
   pullPolicy: IfNotPresent
-  tag: "5.3.0"
+  tag: "5.3.2"
 
 podSecurityContext:
   fsGroup: 3000
