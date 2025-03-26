@@ -33,6 +33,10 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
+      {{- with .imagePullSecrets | default $.Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 2 }}
+      {{- end }}
       containers:
       - name: dashboard
         image: {{ printf "%s:%s" .image.repository .image.tag | quote }}
