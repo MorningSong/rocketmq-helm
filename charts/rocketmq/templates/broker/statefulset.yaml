@@ -62,7 +62,7 @@ spec:
     spec:
       {{- with $.Values.broker.imagePullSecrets | default $.Values.image.pullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 2 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with $.Values.broker.nodeSelector }}
       nodeSelector:

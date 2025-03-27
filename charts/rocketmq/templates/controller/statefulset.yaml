@@ -44,7 +44,7 @@ spec:
     spec:
       {{- with .imagePullSecrets | default $.Values.image.pullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 2 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .nodeSelector }}
       nodeSelector:
