@@ -60,6 +60,10 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
+      {{- with $.Values.broker.imagePullSecrets | default $.Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with $.Values.broker.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -207,14 +211,26 @@ spec:
   volumeClaimTemplates:
     - metadata:
         name: broker-storage
+        {{- with $.Values.broker.persistence.annotations }}
+        annotations:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
       spec:
         accessModes:
+          {{- with $.Values.broker.persistence.accessModes }}
+          {{- toYaml . | nindent 10 }}
+          {{- else }}
           - ReadWriteOnce
+          {{- end }}
         {{- with $.Values.broker.persistence.storageClass }}
         storageClassName: {{ if (eq "-" .) }}""{{ else }}{{ . }}{{ end }}
         {{- end }}
         resources:
           requests:
             storage: {{ $.Values.broker.persistence.size | quote }}
+        {{- with $.Values.broker.persistence.selector }}
+        selector:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
   {{- end }}
 {{- end }}

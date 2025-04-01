@@ -42,6 +42,10 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
+      {{- with .imagePullSecrets | default $.Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -147,10 +151,16 @@ spec:
   volumeClaimTemplates:
     - metadata:
         name: data
+        {{- with .persistence.annotations }}
+        annotations:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
       spec:
         accessModes:
-          {{- range .persistence.accessModes }}
-          - {{ . | quote }}
+          {{- with .persistence.accessModes }}
+          {{- toYaml . | nindent 10 }}
+          {{- else }}
+          - ReadWriteOnce
           {{- end }}
         {{- with .persistence.storageClass }}
         storageClassName: {{ if (eq "-" .) }}""{{ else }}{{ . }}{{ end }}
@@ -158,6 +168,10 @@ spec:
         resources:
           requests:
             storage: {{ .persistence.size | quote }}
+        {{- with .persistence.selector }}
+        selector:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
   {{- end }}
 {{- end }}
 {{- end }}
