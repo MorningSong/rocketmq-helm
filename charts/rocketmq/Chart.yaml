@@ -3,8 +3,8 @@ name: rocketmq
 description: RocketMQ Helm chart
 type: application
 
-version: 12.4.0
-appVersion: '5.3.2'
+version: 12.5.0-rc.0
+appVersion: '5.3.3'
 
 maintainers:
   - name: itboon
