@@ -209,6 +209,7 @@ dashboard:
 controllerModeEnabled: false
 controller:
   enabled: false
+  replicaCount: 1
   jvm:
     maxHeapSize: 600M
     # javaOptsOverride: ""
