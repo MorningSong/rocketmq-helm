@@ -160,6 +160,8 @@ dashboard:
     pullPolicy: IfNotPresent
     tag: "2.1.0"
 
+  containerPort: 8082
+
   auth:
     enabled: true
     users:

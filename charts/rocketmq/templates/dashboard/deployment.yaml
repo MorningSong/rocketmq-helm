@@ -53,7 +53,7 @@ spec:
         {{- end }}
         ports:
         - name: http
-          containerPort: 8082
+          containerPort: {{ .containerPort }}
           protocol: TCP
         resources:
           {{- toYaml .resources | nindent 10 }}

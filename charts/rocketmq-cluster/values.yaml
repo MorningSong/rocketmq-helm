@@ -159,7 +159,9 @@ dashboard:
   image:
     repository: "apacherocketmq/rocketmq-dashboard"
     pullPolicy: IfNotPresent
-    tag: "1.0.0"
+    tag: "2.1.0"
+
+  containerPort: 8082
 
   auth:
     enabled: true

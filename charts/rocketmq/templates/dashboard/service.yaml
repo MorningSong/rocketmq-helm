@@ -16,9 +16,10 @@ metadata:
   {{- end }}
 spec:
   ports:
-  - port: 8082
+  - name: http
+    port: {{ .httpPort | default $.Values.dashboard.containerPort }}
     protocol: TCP
-    targetPort: 8082
+    targetPort: http
     {{- if and (eq .type "NodePort") .nodePort }}
     nodePort: {{ .nodePort }}
     {{- end }}
