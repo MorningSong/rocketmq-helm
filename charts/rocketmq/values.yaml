@@ -2,7 +2,7 @@ clusterName: "rocketmq-helm"
 
 image:
   repository: "apache/rocketmq"
-  tag: "5.3.3"
+  tag: "5.4.0"
   pullPolicy: IfNotPresent
   pullSecrets: []
   # - name: secretName
