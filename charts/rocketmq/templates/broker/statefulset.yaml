@@ -83,6 +83,13 @@ spec:
       affinity:
         {{- toYaml $.Values.broker.affinityOverride | nindent 8 }}
       {{- end }}
+      {{- with $.Values.broker.priorityClassName }}
+      priorityClassName: {{ . }}
+      {{- end }}
+      {{- with $.Values.broker.topologySpreadConstraints }}
+      topologySpreadConstraints:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with $.Values.broker.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
